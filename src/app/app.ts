@@ -158,4 +158,16 @@ prevMessage() {
     }
   }
 
+  bookHearts = Array.from({ length: 20 }, () => ({
+    left: Math.random() * 100,
+    top: Math.random() * 100
+  }));
+
+  downloadBook() {
+    const link = document.createElement('a');
+    link.href = 'assets/pdf/Un Amor Para Siempre.pdf';
+    link.download = 'Un Amor Para Siempre.pdf';
+    link.click();
+  }
+
 }

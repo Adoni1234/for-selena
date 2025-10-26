@@ -109,3 +109,15 @@
 /* opcional: pequeñas variaciones en opacidad y blur para efecto más suave */
 .burst-heart:nth-child(odd) { opacity: 0.95; }
 .burst-heart:nth-child(even) { opacity: 0.9; transform-origin: center; }
+
+
+
+@keyframes float-slow {
+  0% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(-20px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.8; }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
