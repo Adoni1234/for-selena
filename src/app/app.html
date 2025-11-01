@@ -1,59 +1,49 @@
 <!-- HERO -->
-<div class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-gradient-to-r from-pink-200 via-pink-100 to-pink-200">
-  
+<div class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-gradient-to-r from-pink-200 via-pink-100 to-pink-200 px-4">
+
   <!-- Audio -->
   <audio #audioPlayer loop>
     <source src="assets/audios/audio_fondo.mp3" type="audio/mp3"/>
   </audio>
 
-  <!-- Botón invisible que activa la música -->
-  <div 
-    (click)="playAudio()" 
-    class="absolute inset-0 z-50 cursor-pointer"
-    title="Toca para activar la música 🎵">
-  </div>
+  <!-- Botón invisible para activar la música -->
+  <div (click)="playAudio()" class="absolute inset-0 z-50 cursor-pointer" title="Toca para activar la música 🎵"></div>
 
   <!-- Círculo decorativo -->
-  <div class="absolute w-[800px] h-[800px] bg-gradient-to-tr from-pink-300 to-purple-300 rounded-full blur-3xl opacity-40 -top-1/3 -left-1/4"></div>
+  <div class="absolute w-[60vw] max-w-[800px] h-[60vw] max-h-[800px] bg-gradient-to-tr from-pink-300 to-purple-300 rounded-full blur-3xl opacity-40 -top-1/3 -left-1/4"></div>
 
   <!-- Imagen principal -->
   <div class="relative z-10">
     <img src="assets/imagenes/IMG-20230603-WA0052.jpg"
          alt="Nosotros"
-         class="w-72 h-72 md:w-96 md:h-96 object-cover rounded-full border-4 border-pink-400 shadow-2xl animate-pulse-slow"/>
+         class="w-36 sm:w-48 md:w-72 lg:w-96 h-36 sm:h-48 md:h-72 lg:h-96 object-cover rounded-full border-4 border-pink-400 shadow-2xl animate-pulse-slow"/>
   </div>
 
   <!-- Mensaje bonito -->
-  <div class="mt-8 text-center relative z-10">
-    <h1 class="text-4xl md:text-6xl font-bold text-pink-700 drop-shadow-lg animate-bounce">
+  <div class="mt-6 sm:mt-8 text-center relative z-10 px-2">
+    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-pink-700 drop-shadow-lg animate-bounce">
       Para la persona más especial 💞
     </h1>
-    <p class="mt-4 text-lg md:text-2xl text-gray-700 font-medium max-w-2xl mx-auto animate-fadeIn">
+    <p class="mt-2 sm:mt-4 text-sm sm:text-lg md:text-xl lg:text-2xl text-gray-700 font-medium max-w-xl mx-auto animate-fadeIn">
       Cada momento contigo se siente como un hermoso sueño del que nunca quiero despertar 🌸
     </p>
   </div>
 
   <!-- Corazones flotando -->
   <div class="absolute inset-0 pointer-events-none">
-    <div *ngFor="let heart of hearts"
-         class="absolute text-pink-500 animate-float"
-         [style.left.%]="heart.left"
-         [style.top.%]="heart.top">
-      <i class="fas fa-heart text-2xl"></i>
+    <div *ngFor="let heart of hearts" class="absolute text-pink-500 animate-float text-xl sm:text-2xl md:text-3xl"
+         [style.left.%]="heart.left" [style.top.%]="heart.top">
+      <i class="fas fa-heart"></i>
     </div>
-
-    <div *ngFor="let star of stars"
-         class="absolute text-yellow-300 animate-twinkle"
-         [style.left.%]="star.left"
-         [style.top.%]="star.top">
+    <div *ngFor="let star of stars" class="absolute text-yellow-300 animate-twinkle text-sm sm:text-xl"
+         [style.left.%]="star.left" [style.top.%]="star.top">
       ✨
     </div>
   </div>
 </div>
 
 <!-- GALERÍA / CARRUSEL -->
-<div class="relative w-full min-h-screen flex flex-col items-center justify-center 
-            bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 overflow-hidden">
+<div class="relative w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 overflow-hidden px-4">
 
   <!-- Separador curvo superior -->
   <div class="absolute -top-12 left-0 w-full overflow-hidden leading-none">
@@ -63,100 +53,81 @@
   </div>
 
   <!-- Imagen del carrusel -->
-  <div class="relative">
+  <div class="relative w-full max-w-3xl">
     <img [src]="images[currentIndex].url"
          (error)="onImageError(images[currentIndex].url)"
          (load)="onImageLoad(images[currentIndex].url)"
          alt="Foto"
-         class="w-80 h-80 md:w-[28rem] md:h-[28rem] object-cover rounded-2xl border-4 border-pink-500 shadow-2xl transition-all duration-700 ease-in-out">
-    
-    <!-- Flecha izquierda -->
-    <button (click)="prev()"
-            class="absolute left-[-3rem] top-1/2 transform -translate-y-1/2 text-white text-4xl p-3 bg-pink-500 rounded-full shadow-lg hover:bg-pink-600 transition">
+         class="w-full h-auto md:h-80 lg:h-[28rem] object-cover rounded-2xl border-4 border-pink-500 shadow-2xl transition-all duration-700 ease-in-out">
+
+    <!-- Flechas -->
+    <button (click)="prev()" class="absolute left-0 top-1/2 transform -translate-y-1/2 text-white text-3xl sm:text-4xl p-2 sm:p-3 bg-pink-500 rounded-full shadow-lg hover:bg-pink-600 transition">
       <i class="fas fa-chevron-left"></i>
     </button>
-
-    <!-- Flecha derecha -->
-    <button (click)="next()"
-            class="absolute right-[-3rem] top-1/2 transform -translate-y-1/2 text-white text-4xl p-3 bg-pink-500 rounded-full shadow-lg hover:bg-pink-600 transition">
+    <button (click)="next()" class="absolute right-0 top-1/2 transform -translate-y-1/2 text-white text-3xl sm:text-4xl p-2 sm:p-3 bg-pink-500 rounded-full shadow-lg hover:bg-pink-600 transition">
       <i class="fas fa-chevron-right"></i>
     </button>
   </div>
 
   <!-- Mensaje romántico -->
-  <p class="mt-6 text-lg md:text-2xl font-medium text-gray-700 max-w-xl text-center italic">
+  <p class="mt-4 sm:mt-6 text-sm sm:text-lg md:text-xl lg:text-2xl font-medium text-gray-700 max-w-xl text-center italic">
     "{{ images[currentIndex].message }}"
   </p>
 
   <!-- Fecha -->
-  <span class="mt-2 text-sm text-gray-600">
-    📅 {{ images[currentIndex].date }}
-  </span>
+  <span class="mt-1 text-xs sm:text-sm text-gray-600">📅 {{ images[currentIndex].date }}</span>
 
   <!-- Corazones flotando -->
-  <div *ngFor="let heart of galleryHearts"
-       class="absolute text-pink-400 animate-bounce"
+  <div *ngFor="let heart of galleryHearts" class="absolute text-pink-400 animate-bounce text-xl sm:text-2xl"
        [ngStyle]="{'left.%': heart.left, 'top.%': heart.top}">
     <i class="fas fa-heart"></i>
   </div>
 </div>
 
 <!-- SECCIÓN 3️⃣ MENSAJES / DEDICATORIAS -->
-<div class="relative w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-pink-100 via-rose-100 to-pink-200 overflow-hidden py-20">
+<div class="relative w-full flex flex-col items-center justify-center bg-gradient-to-r from-pink-100 via-rose-100 to-pink-200 overflow-hidden py-12 sm:py-16">
 
   <!-- Fondo con corazones flotando -->
   <div class="absolute inset-0 pointer-events-none">
     <div *ngFor="let heart of messageHearts"
-         class="absolute text-pink-400 opacity-70 animate-float-slow"
+         class="absolute text-pink-400 opacity-70 animate-float-slow text-xs sm:text-sm"
          [style.left.%]="heart.left"
          [style.top.%]="heart.top">
-      <i class="fas fa-heart text-sm"></i>
+      <i class="fas fa-heart"></i>
     </div>
   </div>
 
   <!-- Título -->
-  <h2 class="text-4xl md:text-5xl font-bold text-pink-700 mb-10 animate-fade-in">
-    🌹 Mensajes para Ti 🌹
-  </h2>
+  <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700 mb-8 sm:mb-10 animate-fade-in">🌹 Mensajes para Ti 🌹</h2>
 
   <!-- Contenedor de tarjetas -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 z-10">
-    <div *ngFor="let msg of loveMessages; let i = index"
-         class="bg-white/80 backdrop-blur-md shadow-lg rounded-2xl p-6 text-center 
-                border border-pink-200 transition-transform duration-700 ease-in-out
-                animate-slide-up hover:scale-105 hover:shadow-2xl">
-      <p class="text-gray-700 italic text-lg md:text-xl">
-        "{{ msg }}"
-      </p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-6 z-10">
+    <div *ngFor="let msg of loveMessages" class="bg-white/80 backdrop-blur-md shadow-lg rounded-2xl p-4 sm:p-6 text-center border border-pink-200 transition-transform duration-700 ease-in-out animate-slide-up hover:scale-105 hover:shadow-2xl">
+      <p class="text-gray-700 italic text-sm sm:text-lg md:text-xl">{{ msg }}</p>
     </div>
   </div>
 </div>
 
-
-
 <!-- SECCIÓN 4: CARRUSEL DE MENSAJES -->
-<div class="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden
-            bg-gradient-to-r from-pink-100 via-pink-200 to-pink-100">
+<div class="relative w-full flex flex-col items-center justify-center bg-gradient-to-r from-pink-100 via-pink-200 to-pink-100 overflow-hidden py-12 sm:py-16 px-4">
 
-  <!-- Fondo decorativo -->
-  <div class="absolute w-[700px] h-[700px] bg-gradient-to-br from-pink-300 to-purple-300 rounded-full blur-3xl opacity-40 -top-1/4 -right-1/4"></div>
-  <div class="absolute w-[500px] h-[500px] bg-gradient-to-tl from-pink-200 to-yellow-200 rounded-full blur-2xl opacity-30 bottom-0 left-0"></div>
+  <!-- Fondos decorativos -->
+  <div class="absolute w-[60vw] max-w-[700px] h-[60vw] max-h-[700px] bg-gradient-to-br from-pink-300 to-purple-300 rounded-full blur-3xl opacity-40 -top-1/4 -right-1/4"></div>
+  <div class="absolute w-[40vw] max-w-[500px] h-[40vw] max-h-[500px] bg-gradient-to-tl from-pink-200 to-yellow-200 rounded-full blur-2xl opacity-30 bottom-0 left-0"></div>
 
   <!-- Carrusel de mensajes -->
-  <div class="relative z-10 max-w-3xl text-center p-8 bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl border border-pink-200 transition-all duration-700 animate-fadeIn">
-    <p class="text-2xl md:text-3xl font-semibold text-pink-800 italic leading-relaxed">
+  <div class="relative z-10 max-w-3xl text-center p-6 sm:p-8 bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl border border-pink-200 transition-all duration-700 animate-fadeIn">
+    <p class="text-xl sm:text-2xl md:text-3xl font-semibold text-pink-800 italic leading-relaxed">
       “{{ messages[currentMessageIndex].text }}”
     </p>
-    <span class="block mt-4 text-pink-500 font-medium">💞 {{ messages[currentMessageIndex].date }} 💞</span>
+    <span class="block mt-2 sm:mt-4 text-pink-500 font-medium">💞 {{ messages[currentMessageIndex].date }} 💞</span>
 
     <!-- Botones -->
-    <div class="flex justify-center gap-6 mt-6">
-      <button (click)="prevMessage()"
-              class="text-pink-600 text-3xl hover:text-pink-800 transition">
+    <div class="flex justify-center gap-4 sm:gap-6 mt-4 sm:mt-6">
+      <button (click)="prevMessage()" class="text-pink-600 text-2xl sm:text-3xl hover:text-pink-800 transition">
         <i class="fas fa-chevron-left"></i>
       </button>
-      <button (click)="nextMessage()"
-              class="text-pink-600 text-3xl hover:text-pink-800 transition">
+      <button (click)="nextMessage()" class="text-pink-600 text-2xl sm:text-3xl hover:text-pink-800 transition">
         <i class="fas fa-chevron-right"></i>
       </button>
     </div>
@@ -164,83 +135,68 @@
 
   <!-- Corazones flotando -->
   <div class="absolute inset-0 pointer-events-none">
-    <div *ngFor="let heart of floatingHearts"
-         class="absolute text-pink-400 opacity-70 animate-float"
-         [style.left.%]="heart.left"
-         [style.top.%]="heart.top">
+    <div *ngFor="let heart of floatingHearts" class="absolute text-pink-400 opacity-70 animate-float text-xl sm:text-2xl"
+         [style.left.%]="heart.left" [style.top.%]="heart.top">
       <i class="fas fa-heart"></i>
     </div>
   </div>
 </div>
 
 <!-- SECCIÓN 5: NUESTRO LIBRO DE AMOR -->
-<section class="relative w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-pink-100 via-purple-100 to-rose-100 overflow-hidden py-20">
+<section class="relative w-full flex flex-col items-center justify-center bg-gradient-to-r from-pink-100 via-purple-100 to-rose-100 overflow-hidden py-12 sm:py-16 px-4">
 
-  <!-- Fondo suave con corazones -->
+  <!-- Fondo con corazones -->
   <div class="absolute inset-0 pointer-events-none">
-    <div *ngFor="let h of bookHearts"
-         class="absolute text-pink-300 opacity-50 animate-float-slow"
-         [style.left.%]="h.left"
-         [style.top.%]="h.top">
+    <div *ngFor="let h of bookHearts" class="absolute text-pink-300 opacity-50 animate-float-slow text-sm sm:text-base"
+         [style.left.%]="h.left" [style.top.%]="h.top">
       💖
     </div>
   </div>
 
   <!-- Título -->
-  <h2 class="text-4xl md:text-5xl font-bold text-pink-700 mb-8 relative z-10 animate-fadeIn">
-    📖 Nuestro Libro de Amor 💞
-  </h2>
+ <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700 mb-6 sm:mb-8 relative z-10 text-center">
+  📖 Nuestro Libro de Amor 💞
+</h2>
 
   <!-- Contenedor del libro -->
   <div class="relative z-10 flex flex-col items-center">
-    
-    <!-- Imagen del libro (portada) -->
     <div class="relative group cursor-pointer" (click)="downloadBook()">
       <img src="assets/imagenes/portada.png"
            alt="Portada del libro"
-           class="w-72 h-96 md:w-80 md:h-[30rem] object-cover rounded-lg shadow-2xl border-4 border-pink-400 transition-transform duration-500 group-hover:scale-105 group-hover:shadow-pink-300/50"/>
-
-      <!-- Icono de descarga sobre el libro -->
+           class="w-56 sm:w-72 md:w-80 lg:w-96 h-auto rounded-lg shadow-2xl border-4 border-pink-400 transition-transform duration-500 group-hover:scale-105 group-hover:shadow-pink-300/50"/>
       <div class="absolute inset-0 flex flex-col justify-center items-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
-        <i class="fas fa-download text-white text-5xl mb-2"></i>
+        <i class="fas fa-download text-white text-4xl sm:text-5xl mb-2"></i>
         <span class="text-white text-lg font-semibold">Descargar PDF</span>
       </div>
     </div>
 
-    <!-- Información debajo -->
-    <p class="mt-6 text-lg text-gray-700 text-center max-w-md italic">
+    <p class="mt-4 sm:mt-6 text-sm sm:text-lg text-gray-700 text-center italic max-w-md">
       Un pedacito de nosotros en palabras, recuerdos y amor eterno 💗
     </p>
-    <span class="mt-2 text-sm text-gray-600">📅 Última actualización: <strong>26 de octubre de 2025</strong></span>
+    <span class="mt-1 text-xs sm:text-sm text-gray-600">📅 Última actualización: <strong>1 de noviembre de 2025</strong></span>
   </div>
-
 </section>
 
-
-
 <!-- SECCIÓN 6: CIERRE ROMÁNTICO -->
-<section class="relative w-full min-h-screen flex flex-col items-center justify-center
-                bg-gradient-to-r from-pink-100 via-rose-100 to-purple-100 overflow-hidden py-20">
+<section class="relative w-full flex flex-col items-center justify-center bg-gradient-to-r from-pink-100 via-rose-100 to-purple-100 overflow-hidden py-12 sm:py-16 px-4">
 
-  <!-- Corazones de fondo suaves -->
+  <!-- Corazones de fondo -->
   <div class="absolute inset-0 pointer-events-none">
-    <div *ngFor="let h of finalBackgroundHearts"
-         class="absolute text-pink-300 opacity-40"
-         [style.left.%]="h.left"
-         [style.top.%]="h.top">
+    <div *ngFor="let h of finalBackgroundHearts" class="absolute text-pink-300 opacity-40 text-sm sm:text-base"
+         [style.left.%]="h.left" [style.top.%]="h.top">
       ❤️
     </div>
   </div>
 
-  <!-- Audio del pop (clic) -->
+  <!-- Audio pop -->
   <audio #clickSound src="assets/audios/pop.mp3" preload="auto"></audio>
 
   <!-- Texto central -->
-  <div class="relative z-10 text-center max-w-3xl px-6">
-    <h2 class="text-4xl md:text-6xl font-extrabold text-pink-700 mb-6 animate-fadeIn">
+  <div class="relative z-10 text-center max-w-3xl px-2 sm:px-6">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-pink-700 mb-4 sm:mb-6 animate-fadeIn">
       Gracias por ser mi razón de sonreír cada día 💞
     </h2>
-    <p class="text-lg md:text-xl text-gray-700 mb-8">
+    <p class="text-sm sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8">
       Cuando cierro los ojos te imagino a mi lado, y mi corazón sabe que está en casa.
     </p>
 
@@ -252,10 +208,9 @@
     </button>
   </div>
 
-  <!-- Corazones burst (creados al click) -->
+  <!-- Corazones burst -->
   <div class="absolute inset-0 pointer-events-none z-20">
-    <div *ngFor="let b of burstHearts"
-         class="burst-heart absolute"
+    <div *ngFor="let b of burstHearts" class="burst-heart absolute"
          [ngStyle]="{
            left: b.left + '%',
            top: b.top + '%',
